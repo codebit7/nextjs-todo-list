@@ -1,5 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 
+
+
 const prisma = new PrismaClient();
 
 
@@ -10,9 +12,9 @@ export async function PUT(req, { params }) {
 
     const { title, description, dueDate, isCompleted } = await req.json();
 
-    if (!title || !description || !dueDate) {
+    if (!title && !description && !dueDate && typeof isCompleted === "undefined") {
       return Response.json(
-        { error: "Please provide all fields" },
+        { error: "atleast provide one  field" },
         { status: 400 }
       );
     }

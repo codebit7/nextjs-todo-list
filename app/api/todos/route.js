@@ -1,12 +1,14 @@
 import { PrismaClient } from "@prisma/client";
 
+
+
 const prisma = new PrismaClient();
 
 export async function  POST(req){
 
    const body =  await req.json();
 
-   if(!body.title  || body.description){
+   if(!body.title  || !body.description){
     return Response.json(
         {
             error:"Please fill the Title and description"
